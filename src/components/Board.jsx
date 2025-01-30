@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Button from './Button';
+import RollButton from './RollButton';
 import './Board.css'
 
 const Board = () => {
@@ -52,11 +53,15 @@ const Board = () => {
             <div className="dice-container">
                 {
                     board.map(el => (
-                        <Button key={el.id} board={el} selectButton={() => selectButton(el.id)} />
+                        <Button 
+                            key={el.id} 
+                            board={el} 
+                            selectButton={() => selectButton(el.id)} 
+                        />
                     ))
                 }
             </div>
-            <button className='roll-button' onClick={rollDice}>{gameOver ? 'New game' : 'Roll'}</button>
+            <RollButton rollDice={rollDice} gameOver={gameOver}/>
         </section>
     );
 }
