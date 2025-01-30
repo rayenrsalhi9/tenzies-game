@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from './Button';
 import RollButton from './RollButton';
 import './Board.css'
@@ -12,6 +12,10 @@ const Board = () => {
         value: Math.floor(Math.random() * 6) + 1,
         selected: false
     })))
+
+    useEffect(() => {
+        isGameOver();
+    }, [board])
 
     const rollDice = () => {
         if (!gameOver) {
@@ -33,7 +37,6 @@ const Board = () => {
     }
 
     const selectButton = (btnIndex) => {
-        isGameOver();
         !gameOver &&
         setBoard(prevBoard => prevBoard.map((el) => {
             return(
@@ -45,7 +48,7 @@ const Board = () => {
     }
 
     const isGameOver = () => {
-        board.every(el => el.value === board[0].value) && setGameOver(true);
+        board.every(el => el.value === board[0].value && el.selected) && setGameOver(true);
     }
 
     return(
