@@ -1,21 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Button from './Button';
 import RollButton from './RollButton';
+import ReactConfetti from 'react-confetti';
 import './Board.css'
 
 const Board = () => {
-
-    const [gameOver, setGameOver] = useState(false);
-
     const [board, setBoard] = useState(Array(10).fill(null).map((_, index) => ({
         id: index,
         value: Math.floor(Math.random() * 6) + 1,
         selected: false
     })))
 
-    useEffect(() => {
-        isGameOver();
-    }, [board])
+    const gameOver = board.every(el => el.value === board[0].value && el.selected)
 
     const rollDice = () => {
         if (!gameOver) {
@@ -27,7 +23,6 @@ const Board = () => {
                 )
             }));
         } else {
-            setGameOver(false);
             setBoard(Array(10).fill(null).map((_, index) => ({
                 id: index,
                 value: Math.floor(Math.random() * 6) + 1,
@@ -41,14 +36,10 @@ const Board = () => {
         setBoard(prevBoard => prevBoard.map((el) => {
             return(
                 el.id === btnIndex ? 
-                {...el, selected: true} :
+                {...el, selected: !el.selected} :
                 el
             )
         }))
-    }
-
-    const isGameOver = () => {
-        board.every(el => el.value === board[0].value && el.selected) && setGameOver(true);
     }
 
     return(
@@ -65,6 +56,7 @@ const Board = () => {
                 }
             </div>
             <RollButton rollDice={rollDice} gameOver={gameOver}/>
+            {gameOver && <ReactConfetti />}
         </section>
     );
 }
