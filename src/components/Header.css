@@ -1,0 +1,21 @@
+header {
+    color: #2B283A;
+    padding-top: 20px;
+}
+
+header > h1 {
+    font-weight: 700;
+    font-size: 26px;
+    text-align: center;
+    letter-spacing: -.5px;
+}
+
+header > p {
+    color: #4A4E74;
+    font-weight: 400;
+    font-size: 14px;
+    width: 233px;
+    text-align: center;
+    margin: 5px auto;
+    letter-spacing: -.5px;
+}

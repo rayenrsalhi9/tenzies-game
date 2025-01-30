@@ -1,0 +1,61 @@
+.board {
+    width: 250px;
+    margin: 15px auto;
+}
+
+.dice-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.dice {
+    width: 36px;
+    height: 36px;
+
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    font-size: 21px;
+
+    color: #2B283A;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+
+    border-radius: 6px;
+    border: none;
+
+    cursor: pointer;
+    transition: .4s;
+}
+
+.dice:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.208), 0px 1px 2px 0px rgba(0, 0, 0, 0.125);
+}
+
+button.roll-button {
+    background: #5035FF;
+    color: #FFFFFF;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.208), 0px 1px 2px 0px rgba(0, 0, 0, 0.125);
+    cursor: pointer;
+
+    width: 93px;
+    height: 36px;
+
+    display: block;
+    margin: 30px auto 0;
+
+    border: none;
+    border-radius: 4px;
+
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: .5px;
+
+    transition: .4s;
+}
+
+button.roll-button:hover {
+    background: #3e22f8;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.257), 0px 1px 2px 0px rgba(0, 0, 0, 0.216);
+}
