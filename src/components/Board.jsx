@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Button from './Button';
 import RollButton from './RollButton';
 import ReactConfetti from 'react-confetti';
 import './Board.css'
 
 const Board = () => {
+
     const [board, setBoard] = useState(Array(10).fill(null).map((_, index) => ({
         id: index,
         value: Math.floor(Math.random() * 6) + 1,
@@ -12,6 +13,12 @@ const Board = () => {
     })))
 
     const gameOver = board.every(el => el.value === board[0].value && el.selected)
+
+    const rollButtonRef = useRef(null)
+
+    useEffect(() => {
+        gameOver && rollButtonRef.current.focus();
+    }, [gameOver])
 
     const rollDice = () => {
         if (!gameOver) {
@@ -55,8 +62,11 @@ const Board = () => {
                     ))
                 }
             </div>
-            <RollButton rollDice={rollDice} gameOver={gameOver}/>
+            <RollButton rollDice={rollDice} gameOver={gameOver} rollButtonRef={rollButtonRef} />
             {gameOver && <ReactConfetti />}
+            <div aria-live='polite' className='sr-only'>
+                    {gameOver && <p>Congratulations! You won the game, press new game to restart.</p>}
+            </div>
         </section>
     );
 }
